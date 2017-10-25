@@ -1,0 +1,22 @@
+{
+  "name": "js-todos",
+  "version": "1.0.0",
+  "description": "Learn TODOs",
+  "main": "todo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miracle-fox-2017/js-todos.git"
+  },
+  "author": "Agustinus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miracle-fox-2017/js-todos/issues"
+  },
+  "homepage": "https://github.com/miracle-fox-2017/js-todos#readme",
+  "dependencies": {
+    "cli-table2": "^0.2.0"
+  }
+}
