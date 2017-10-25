@@ -45,19 +45,12 @@ class Models {
                }
     this.list.push(task)
     this.saveFile(this.list)
-    return `Added "${newTask}" to your TOD list`
-  }
-
-  commandList(msg='') {
-    return `${msg}${this.help.join('\n')}`
+    return newTask
   }
 
   readList(list = this.list,tag) {
     let finish
     let listArr = []
-    if(this.list.length == 0){
-      return 'Your TODO list is empty!!'
-    }
     for (var i = 0; i < list.length; i++) {
       if(list[i].finish == false){
         finish = '[ ]'
@@ -70,7 +63,7 @@ class Models {
       }
       listArr.push(`${list[i].id}. ${finish} ${list[i].task} ${tag}`)
     }
-    return listArr.join('\n')
+    return listArr
   }
 
   findTask(id) {
@@ -79,7 +72,6 @@ class Models {
         return this.readList([this.list[i]])
       }
     }
-    return `Task not found!!!`
   }
 
   delTask(id) {
@@ -88,10 +80,9 @@ class Models {
         let task = this.list[i].task
         this.list.splice(i, 1)
         this.saveFile(this.list)
-        return `Deleted "${task}" from your TODO list`
+        return task
       }
     }
-    return `Task not found!!!`
   }
 
   completeTask(id) {
@@ -100,10 +91,9 @@ class Models {
         this.list[i].finish = true
         this.list[i].completedAt = new Date()
         this.saveFile(this.list)
-        return `Good job, your task "${this.list[i].task}" is completed`
+        return this.list[i]
       }
     }
-    return `Task not found!!!`
   }
 
   uncompleteTask(id) {
@@ -112,10 +102,9 @@ class Models {
         this.list[i].finish = false
         this.list[i].completedAt = null
         this.saveFile(this.list)
-        return `Task "${this.list[i].task}" is uncomplete`
+        return this.list[i]
       }
     }
-    return `Task not found!!!`
   }
 
   sortList(list, order = 'asc') {
@@ -142,11 +131,7 @@ class Models {
         listComp.push(this.list[i])
       }
     }
-    if(listComp.length == 0){
-      return 'No task completed!!!'
-    }else{
-      return this.readList(this.sortList(listComp, order))
-    }
+    return this.readList(this.sortList(listComp, order))
   }
 
   addTag(id,tag) {
@@ -156,7 +141,7 @@ class Models {
           this.list[i].tagName.push(name)
         })
         this.saveFile(this.list)
-        return `Tagged task "${this.list[i].task}" with tags : ${tag}`
+        return [this.list[i],tag]
       }
     }
   }
@@ -169,9 +154,6 @@ class Models {
           byTag.push(this.list[i])
         }
       }
-    }
-    if(byTag.length == 0){
-      return 'tag not found!!!'
     }
     return this.readList(this.sortList(byTag, order),'tag')
   }

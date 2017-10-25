@@ -15,68 +15,68 @@ class Controllers {
     }
     switch (cmd[0]) {
       case 'help':
-        Views.print(models.commandList())
+        Views.help(models.help.join('\n'))
         break;
       case 'list':
         if(cmd[1] == 'created'){
-          Views.print(models.createdSort(command[1]))
+          Views.list(models.createdSort(command[1]))
         }else if(cmd[1] == 'completed'){
-          Views.print(models.completedSort(command[1]))
-        }else{
-          Views.print(models.readList())
+          Views.listCompleted(models.completedSort(command[1]))
+        }else if(!cmd[1]){
+          Views.list(models.readList())
         }
         break;
       case 'add':
         if(command[1]){
-          Views.print(models.addFile(command.slice(1).join(' ')))
+          Views.add(models.addFile(command.slice(1).join(' ')))
         }else{
           Views.printErrCommand()
         }
         break;
       case 'task':
         if(command[1]){
-          Views.print(models.findTask(command[1]))
+          Views.find(models.findTask(command[1]))
         }else{
           Views.printErrCommand()
         }
         break;
       case 'delete':
         if(command[1]){
-          Views.print(models.delTask(command[1]))
+          Views.delete(models.delTask(command[1]))
         }else{
           Views.printErrCommand()
         }
         break;
       case 'complete':
       if(command[1]){
-          Views.print(models.completeTask(command[1]))
+          Views.complete(models.completeTask(command[1]))
         }else{
           Views.printErrCommand()
         }
         break;
       case 'uncomplete':
         if(command[1]){
-          Views.print(models.uncompleteTask(command[1]))
+          Views.uncomplete(models.uncompleteTask(command[1]))
         }else{
           Views.printErrCommand()
         }
         break;
       case 'tag':
         if(command[1]){
-          Views.print(models.addTag(command[1],command.slice(2)))
+          Views.tag(models.addTag(command[1],command.slice(2)))
         }else{
           Views.printErrCommand()
         }
         break;
       case 'filter':
         if(cmd[1]){
-          Views.print(models.findByTag(cmd[1], command[1]))
+          Views.filterTag(models.findByTag(cmd[1], command[1]))
         }else{
           Views.printErrCommand()
         }
         break;
       default:
-        Views.print(models.commandList('Command not found!!!\n'))
+        Views.help(models.help.join('\n'))
         break;
     }
   }
