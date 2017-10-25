@@ -1,4 +1,3 @@
-// const Controller = require('../controllers/controller')
 const fs         = require('fs')
 const parse_data = JSON.parse(fs.readFileSync('data.json'))
 
@@ -13,8 +12,9 @@ class Model{
         list_container += `${parse_data[i]['id']}. [ ] ${parse_data[i]['task']}\n`
       }
     }
+    // console.log(parse_data);
     return list_container
-    // console.log(list_container);
+
   }
 
   static add_to_do_list(list_add){

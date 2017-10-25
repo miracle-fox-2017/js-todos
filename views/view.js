@@ -1,6 +1,3 @@
-// const Controller = require('../controllers/controller')
-// const Model      = require('../models/model')
-
 class View{
 
   static help(){

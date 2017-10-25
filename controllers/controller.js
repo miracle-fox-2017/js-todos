@@ -1,6 +1,6 @@
-// const Index = require('../todo')
 const View  = require('../views/view')
 const Model = require('../models/model')
+
 
 class Controller{
 
