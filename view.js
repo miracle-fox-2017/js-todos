@@ -7,8 +7,8 @@ class View {
     console.log('node todo add <task_content>')
     console.log('node todo.js task <task id>')
     console.log('node todo.js delete <task_id>')
-    console.log('node todo.js complete <task_id>')
-    console.log('node todo.js uncomplete <task_id>');
+    console.log('node todo.js completed <task_id>')
+    console.log('node todo.js uncompleted <task_id>');
 
   }
 
