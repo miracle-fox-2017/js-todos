@@ -1,1 +1,92 @@
-[]
+[
+    {
+        "id": 1,
+        "task": "Membuat website",
+        "status": true,
+        "created_at": "2017-10-25T05:35:02.023Z",
+        "completed_at": "2017-10-25T06:56:24.773Z",
+        "tags": [
+            "hacktiv8",
+            "hidup",
+            "komputer"
+        ]
+    },
+    {
+        "id": 4,
+        "task": "Belajar node.js semangat selalu",
+        "status": true,
+        "created_at": "2017-11-25T05:30:02.025Z",
+        "completed_at": "2017-10-25T06:56:31.608Z",
+        "tags": [
+            "hacktiv8",
+            "hidup",
+            "javascript",
+            "programming"
+        ]
+    },
+    {
+        "id": 5,
+        "task": "Belajar logic lebih keras lagi",
+        "status": true,
+        "created_at": "2017-10-22T05:15:16.023Z",
+        "completed_at": "2017-10-25T09:48:42.788Z"
+    },
+    {
+        "id": 6,
+        "task": "Belajar express.js",
+        "status": true,
+        "created_at": "2017-10-25T05:10:10.023Z",
+        "completed_at": "2017-10-25T06:56:37.306Z"
+    },
+    {
+        "id": 7,
+        "task": "Belajar callback",
+        "status": false,
+        "created_at": "2017-10-25T05:13:10.023Z",
+        "completed_at": "2017-10-25T09:51:06.820Z"
+    },
+    {
+        "id": 8,
+        "task": "Belajar memahamimu",
+        "status": false,
+        "created_at": "2017-10-25T05:20:12.023Z",
+        "completed_at": "Z",
+        "tags": [
+            "cinta",
+            "hidup"
+        ]
+    },
+    {
+        "id": 9,
+        "task": "Belajar cara melupakanmu",
+        "status": true,
+        "created_at": "2017-10-25T05:35:02.023Z",
+        "completed_at": "2017-10-25T13:21:59.956Z",
+        "tags": [
+            "hidup",
+            "cinta",
+            "moveon"
+        ]
+    },
+    {
+        "id": 11,
+        "task": "Belajar move on",
+        "status": false,
+        "created_at": "2017-10-25T06:55:10.120Z",
+        "completed_at": "Z"
+    },
+    {
+        "id": 12,
+        "task": "Belajar masak",
+        "status": true,
+        "created_at": "2017-10-25T09:47:44.896Z",
+        "completed_at": "2017-10-25T09:51:21.303Z"
+    },
+    {
+        "id": 13,
+        "task": "Belajar bernyanyi",
+        "status": false,
+        "created_at": "2017-10-25T13:21:29.720Z",
+        "completed_at": "Z"
+    }
+]
