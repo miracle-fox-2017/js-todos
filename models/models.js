@@ -16,7 +16,7 @@ var tbSort = new Table({
                 }
         , colWidths: [5, 10, 25]  //set the widths of each column (optional)
             });
-let dataTodo = JSON.parse(fs.readFileSync('data0.json','utf8'))
+let dataTodo = JSON.parse(fs.readFileSync('data.json','utf8'))
 class Model {
   static modelList(){
     // let result = ''
@@ -50,7 +50,7 @@ class Model {
       tag : []
     })
     let save = JSON.stringify(dataTodo)
-    fs.writeFile('data0.json', save, (err) => {
+    fs.writeFile('data.json', save, (err) => {
       let msg
       if (!err){
           msg = `Added "${add}" to your TODO list`
@@ -88,7 +88,7 @@ class Model {
       }
     })
     let save = JSON.stringify(lists)
-    fs.writeFile('data0.json', save, (err) => {
+    fs.writeFile('data.json', save, (err) => {
       let msg
       if (!err){
           msg = `Delete "${delet}" to your TODO list`
@@ -110,7 +110,7 @@ class Model {
       }
     })
     let save = JSON.stringify(dataTodo)
-    fs.writeFile('data0.json', save, (err) => {
+    fs.writeFile('data.json', save, (err) => {
       let msg
       if (!err){
           msg = `Success to completing your TODO list`
@@ -132,7 +132,7 @@ class Model {
       }
     })
     let save = JSON.stringify(dataTodo)
-    fs.writeFile('data0.json', save, (err) => {
+    fs.writeFile('data.json', save, (err) => {
       let msg
       if (!err){
           msg = `Success to uncompleting your TODO list`
@@ -199,7 +199,7 @@ class Model {
       }
     })
     let save = JSON.stringify(dataTodo)
-    fs.writeFile('data0.json', save, (err) => {
+    fs.writeFile('data.json', save, (err) => {
       let msg
       if (!err){
           msg = `Success to insert TAG your TODO list`
