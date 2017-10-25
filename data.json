@@ -1,1 +1,1 @@
-[]
+[{"id":1,"task":"Sholat subuh","complete":false,"createdAt":"2017-10-25T13:06:48.438Z","completedAt":null,"tag":[]},{"id":2,"task":"Dzikir pagi","complete":false,"createdAt":"2017-10-25T13:06:59.052Z","completedAt":null,"tag":["Al-Kahfi","An-Nabaa"]},{"id":3,"task":"Sholat dhuha","complete":false,"createdAt":"2017-10-25T13:07:12.651Z","completedAt":null,"tag":[]},{"id":4,"task":"Sholat jumat","complete":false,"createdAt":"2017-10-25T13:51:09.988Z","completedAt":null,"tag":["Al-Kahfi"]}]
