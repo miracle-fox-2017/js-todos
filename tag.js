@@ -1,8 +1,8 @@
-class Tag {
-	constructor(args) {
-		this.id = args.id;
-		this.name = args.name;
-	}
-}
+// class Tag {
+// 	constructor(args) {
+// 		this.id = args.id;
+// 		this.name = args.name;
+// 	}
+// }
 
-module.exports = Tag;
+// module.exports = Tag;

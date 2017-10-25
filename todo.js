@@ -5,33 +5,117 @@ const TodoView = require('./todo-view');
 
 //Controller
 class Todo {
-	constructor(args) {
-
+	constructor(file) {
+		this.file = file;
+		this.model = new TodoModel(this.file);
+		this.data = this.model.loadData();
 	}
 
-	static getCommand(args) {
+	getAllTasks() {
+		return this.data;
+	}
+
+	getNewTaskId() {
+		let newId = this.getAllTasks()[this.getAllTasks().length - 1].id; 
+	
+		return newId + 1;
+	}
+
+	createNewTask(taskTitle) {
+		let data = this.getAllTasks();
+		data.push({ 
+			id: this.getNewTaskId(),
+			task: taskTitle,
+			isComplete: false,
+			tags: [ {id: 1, name: "Jobs"} ],
+			created_at: new Date() 
+		});
+
+		
+		this.model.saveData(JSON.stringify(data));
+		TodoView.showMessage(`Added "${taskTitle}" to your TODO list...`);
+	}
+
+	findTaskById(taskId) {
+		let tasks = this.getAllTasks();
+		let result = '';
+
+		for (var i = 0; i < tasks.length; i++) {
+			if (+taskId === tasks[i].id) {
+				result = `${tasks[i].id}.  ${tasks[i].task}`;
+			}
+		}
+
+		TodoView.showMessage(result);
+	}
+
+	deleteTaskBydId(taskId) {
+		let tasks = this.getAllTasks();
+		let result = '';
+		let finalTask = [];
+		let deletedTask = [];
+
+		for (var i = 0; i < tasks.length; i++) {
+			if (+taskId !== tasks[i].id) {
+				finalTask.push(tasks[i]);
+			} else {
+				deletedTask.push(tasks[i]);
+			}
+		}
+
+		TodoView.showMessage(`Deleted ${deletedTask[0].task} from your TODO list...`);
+		this.model.saveData(JSON.stringify(finalTask));
+	}
+
+	getCommand(args) {
 		let basicCommand = args[0];
+		let inputParam = args[1];
 
 		if (args.length === 0 || typeof args === 'undefined' || basicCommand === 'help') {
-			TodoView.showHelp();
+			// TodoView.showHelp();
 		} 
-		// else  {
-			// console.log('MASUK!');
-			// if (basicCommand === 'list') {
-			// 	console.log('Tampilkan data lewat Model');
-			// }
+		else  {
+			// List
+			if (basicCommand.substring(0, 4) === 'list') {
+				TodoView.showAllTasks(this.getAllTasks());
+			}
 
-			// if (basicCommand === 'add' && typeof args[1] !== 'undefined' && args[1].length > 0) {
-			// 	console.log('Simpan data lewat Model');
-			// }
+			// Add
+			else if (basicCommand === 'add' && typeof inputParam !== 'undefined' && inputParam.length > 0) {
+				this.createNewTask(inputParam);
+			}
 
-			// if (args[0].length > 0 && isNaN(args[1]) === false) {
-			// 	console.log('Simpan data lewat Model');
-			// }
-		// }
+			// Find
+			else if (basicCommand === 'task' && isNaN(inputParam) === false) {
+				this.findTaskById(inputParam);
+			}
+
+			// Delete
+			else if (basicCommand === 'delete' && isNaN(inputParam) === false) {
+				this.deleteTaskBydId(inputParam);
+			}
+
+			// Complete
+			else if (basicCommand === 'complete' && isNaN(inputParam) === false) {
+				console.log('Set complete data lewat Model');
+			}
+
+			// Uncomplete
+			else if (basicCommand === 'uncomplete' && isNaN(inputParam) === false) {
+				console.log('Set uncomplete data lewat Model');
+			}
+
+			else {
+				TodoView.showMessage('Wrong Command!');
+				TodoView.showHelp();
+			}
+		}
 	}
 }
 
-let commands = process.argv.splice(2);
-Todo.getCommand(commands);
+let todo = new Todo('data.json');
 
+todo.getNewTaskId();
+
+let commands = process.argv.splice(2);
+todo.getCommand(commands);
