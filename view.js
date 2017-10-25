@@ -24,6 +24,12 @@ class View{
   static viewFinding(input){
     console.log(input);
   }
+  static viewDeleted(input){
+    console.log('Deleted '+ input +' from your TODO list...');
+  }
+  static viewCompleted(input){
+    console.log(input);
+  }
 }
 
 
