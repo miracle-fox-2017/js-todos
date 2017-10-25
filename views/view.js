@@ -1,5 +1,5 @@
-const Controller = require('../controllers/controller')
-const Model      = require('../models/model')
+// const Controller = require('../controllers/controller')
+// const Model      = require('../models/model')
 
 class View{
 
@@ -10,7 +10,11 @@ class View{
   }
 
   static list(to_do_list){
-    console.log(`\n=== YOUR TO DO LIST ===\n\n${to_do_list}`); 
+    console.log(`\n=== YOUR TO DO LIST ===\n\n${to_do_list}`);
+  }
+
+  static find_list(find_list){
+    console.log(find_list);
   }
 
 
