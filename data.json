@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "id": 1,
+    "todo": "makan",
+    "complete": true
+  },
+  {
+    "id": 2,
+    "todo": "tidur",
+    "complete": false
+  },
+  {
+    "id": 3,
+    "todo": "minum",
+    "complete": true
+  },
+  {
+    "id": 4,
+    "todo": "Ngoding",
+    "complete": false
+  },
+  {
+    "id": 5,
+    "todo": "tidur",
+    "complete": true
+  }
+]
