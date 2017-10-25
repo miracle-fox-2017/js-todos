@@ -52,11 +52,16 @@ class Controller{
                 if(this.command[0] == "help"){ // Jika command yang diinput adalah help
                     View.help();
                 }else if(this.command[0] == "list"){ // Jika command yang diinput adalah list
-                    if(this.specialCmd === false){
+                    if(this.specialCmd === false){ // Jika tidak ada parameter tambahan dalam pemanggilan command list
                         View.list(json);
                     }else{
-                        const sorted=model.list(this.specialCmd,this.content.toString());
-                        View.list(sorted);
+                        const listParam=["created","completed"];
+                        if(listParam.includes(this.specialCmd)){
+                            const sorted=model.list(this.specialCmd,this.content.toString());
+                            View.list(sorted);
+                        }else{
+                            View.cmdNotFound();
+                        }
                     }
                 }
             }
