@@ -6,6 +6,7 @@ class Todos {
 static inputan (argv){
         let data = TaskTodo.bacaList()
         let counter = 1
+        let arrSplit = argv[0].split(':')
         if (argv[0] === 'help'){
           Print.helper()
         }
@@ -21,6 +22,26 @@ static inputan (argv){
           else {
             this.list()
           }
+        }
+
+        else if (argv[0] === 'list:completed') {
+          this.completedList(data)
+        }
+
+        else if (argv[0] === 'tag') {
+          if (argv[1].length == 0){
+            Print.errorNoInput()
+            Print.helper()
+          }
+          else {
+            let argvSlice = argv.slice(2)
+            this.tagNamed(data,argv[1],argvSlice)
+          }
+        }
+
+        else if (arrSplit[0] === 'filter') {
+            this.filterTag(data,arrSplit[1])
+            // console.log(arrSplit[1]);
         }
 
         else if (argv[0] === 'add' && argv[1] != undefined ) {
@@ -61,14 +82,14 @@ static inputan (argv){
           }
           else {
             console.log(data.length);
-            // for (let i =0;i<data.length;i++){
-            //   if (argv[counter] === data[i].id_list){
-            //     data[i].complete = true
-            //     let arr = data
-            //     TaskTodo.update(arr)
-            //     this.list()
-            //   }
-            // }
+            for (let i =0;i<data.length;i++){
+              if (argv[counter] === data[i].id_list){
+                data[i].complete = true
+                let arr = data
+                TaskTodo.update(arr)
+                this.list(data)
+              }
+            }
           }
         }
 
@@ -82,7 +103,7 @@ static inputan (argv){
                 data[i].complete = false
                 let arr = data
                 TaskTodo.update(arr)
-                this.list()
+                this.list(data)
               }
             }
           }
@@ -109,6 +130,7 @@ static listSort(type){
     var dateA =new Date(a.craeatedAt), dateB=new Date(b.craeatedAt)
     return dateA-dateB })
     this.list(sort)
+    // console.log(sort);
 
   }
   else if (type === 'desc') {
@@ -119,14 +141,39 @@ static listSort(type){
   }
 }
 
-  // static find (){
-  //   let data = TaskTodo.bacaList()
-  //   for (let i=0;i<input.length;i++){
-  //     if (input[i] === 'task' && input[i+1] != undefined ) {
-  //       Print.find(input[i],input[i+1])
-  //     }
-  //   }
-  // }
+static completedList(data){
+  let arr = []
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].complete === true){
+      arr.push(data[i])
+    }
+  }
+  this.list(arr)
+}
+
+static tagNamed(data,id,argvArr){
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].id_list === id){
+      data[i].tags = argvArr
+      Print.printTag(data[i].todolist,argvArr)
+      TaskTodo.update(data)
+      // console.log(data);
+    }
+  }
+}
+
+static filterTag(data,tag){
+  for (let i = 0; i < data.length; i++) {
+    for(let j=0;j<data[i].tags.length;j++){
+      if (data[i].tags[j] === tag){
+        Print.printFilter(data[i].id_list,data[i].todolist,data[i].tags)
+      }
+      // else {
+      //   Print.erorNoInput()
+      // }
+    }
+  }
+}
 
 }
 

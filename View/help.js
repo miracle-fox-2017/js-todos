@@ -27,15 +27,24 @@ class Print {
   }
 
   static add (value){
-    console.log(`Added ${value} to your TODO list .....` );
+    console.log(`Added '${value}' to your TODO list .....` );
   }
 
   static find(cariId,cariValue){
-    console.log(`${cariId} ${cariValue}  your TODO list .....` );
+    console.log(`${cariId} '${cariValue}'  your TODO list .....` );
   }
 
   static hapus(id){
     console.log(`Deleted ${id} to your TODO list .....` );
+  }
+  static printTag(todo,tagName){
+    console.log(`Tagged task '${todo}' with tags: ${tagName}`);
+  }
+  static printFilter(id,todolist,argvArr){
+      console.log(`${id}. ${todolist} [${argvArr}]`);
+  }
+  static erorNoInput(){
+    console.log(`Opps Silahkan Masukan <task_id> Atau Melihat Bantuan Dibawah Ini`);
   }
 
 }
