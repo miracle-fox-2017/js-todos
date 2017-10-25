@@ -1,1 +1,26 @@
-[]
+[
+  {
+		"id": 1,
+		"name": "Learn NodeJS",
+		"completed": true,
+		"created_date": "2017-09-27T14:29:19.971Z",
+		"completed_date": "2017-09-27T14:34:36.615Z",
+    "tag": ["Hacktiv8", "mandiri"]
+	},
+	{
+		"id": 2,
+		"name": "Learn ExpressJS",
+		"completed": false,
+		"created_date": "2017-09-28T14:29:19.971Z",
+		"completed_date": null,
+    "tag": ["Hacktiv8"]
+	},
+  {
+    "id": 3,
+    "name": "Learn Typescript",
+    "completed": false,
+    "created_date": "2017-09-29T14:29:19.971Z",
+    "completed_date": null,
+    "tag": ["mandiri"]
+  }
+]
