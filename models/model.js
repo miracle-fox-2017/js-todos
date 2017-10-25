@@ -7,9 +7,14 @@ class Model{
   static to_do_list(){
     let list_container = ''
     for (var i = 0; i < parse_data.length; i++) {
-      list_container += `${i+1}. ${parse_data[i]['task']}\n`
+      if(parse_data[i]['status'] === true){
+        list_container += `${parse_data[i]['id']}. [x] ${parse_data[i]['task']}\n`
+      }else{
+        list_container += `${parse_data[i]['id']}. [ ] ${parse_data[i]['task']}\n`
+      }
     }
     return list_container
+    // console.log(list_container);
   }
 
   static add_to_do_list(list_add){
@@ -75,7 +80,38 @@ class Model{
         }
       })
     }
+  }
 
+  static complete_to_do_list(list_complete){
+    for(let i=0; i<parse_data.length; i++){
+      if(parse_data[i]['id'] == list_complete){
+        parse_data[i].status = true
+      }
+    }
+
+    fs.writeFile('data.json', JSON.stringify(parse_data),(err,deleted)=>{
+      if(err){
+        console.log('failed to checklist complete your list')
+      }else{
+        console.log(`Complete checklist from your TO DO list...`)
+      }
+    })
+  }
+
+  static uncomplete_to_do_list(list_uncomplete){
+    for(let i=0; i<parse_data.length; i++){
+      if(parse_data[i]['id'] == list_uncomplete){
+        parse_data[i].status = false
+      }
+    }
+
+    fs.writeFile('data.json', JSON.stringify(parse_data),(err,deleted)=>{
+      if(err){
+        console.log('failed to unchecklist complete your list')
+      }else{
+        console.log(`Complete unchecklist from your TO DO list...`)
+      }
+    })
   }
 
 }
