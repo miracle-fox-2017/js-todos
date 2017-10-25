@@ -165,7 +165,7 @@ class Todo {
 		let secondInputParam = args[2];
 
 		if (args.length === 0 || typeof args === 'undefined' || basicCommand === 'help') {
-			// TodoView.showHelp();
+			TodoView.showHelp();
 		} 
 		else  {
 			// List
@@ -245,5 +245,3 @@ todo.getNewTaskId();
 
 let commands = process.argv.splice(2);
 todo.getCommand(commands);
-
-let strs = 'list:completed';
