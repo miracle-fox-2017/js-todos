@@ -6,6 +6,8 @@ const View = require('../views/view.js')
 
 let command_a = argv[2]
 let command_b = argv[3]
+let command_c = argv[4]
+let command_d = argv[5]
 
 let model = new Model('../database/data.json')
 
@@ -17,6 +19,9 @@ class Controller {
     this.data = model.readFile()
     this.command_a = command_a
     this.command_b = command_b
+    this.command_c = command_c
+    this.command_d = command_d
+
   }
 
 
@@ -49,6 +54,22 @@ class Controller {
             this.uncomplete(this.command_b)
             View.list(this.data)
           break;
+        case 'list:created':
+            let sort = this.listCreated(this.command_b)
+            View.list(sort)
+          break;
+          case 'list:completed':
+              let completed = this.listComplete(this.command_b)
+              View.list(completed)
+            break;
+          case 'tag':
+              let tagging = this.tagCommand(this.command_b, this.command_c, this.command_d)
+              View.tags(tagging, this.command_c, this.command_d)
+            break;
+          case 'filter:':
+              let filter = this.filter(this.command_b)
+              View.filter(filter)
+            break;
       default:
       View.listCommand()
     }
@@ -64,7 +85,8 @@ class Controller {
       id : this.data.length == 0 ? 1 : this.data[this.data.length-1].id + 1,
       task : newTask,
       complete: false,
-      created_at:  new Date().toISOString()
+      created_at:  new Date().toISOString(),
+      tags : []
     }
     dataArr.push(obj)
     model.save(dataArr)
@@ -106,6 +128,100 @@ class Controller {
     }
     model.save(this.data)
   }
+
+  // rilis 2
+  listCreated (arg){
+    console.log(arg)
+    let data = this.data
+
+    if(arg == "asc" || arg == null){
+    data.sort(function compare(a, b){
+        var dateA = new Date(a.created_at);
+        var dateB = new Date(b.created_at);
+        return dateA - dateB;
+      })
+    }else if(arg == "desc"){
+
+      data.sort(function compare(a, b){
+              var dateA = new Date(a.created_at);
+              var dateB = new Date(b.created_at);
+              return dateB - dateA;
+          })
+    }
+    return data
+      model.save(data)
+
+  }
+
+  listComplete (arg){
+    let data = this.data
+    let dataCompleteArr = []
+
+    for(let i =0; i < data.length; i++){
+      if(data[i].complete == true){
+        dataCompleteArr.push(data[i])
+      }
+    }
+    if(arg == "asc" || arg == null){
+    dataCompleteArr.sort(function compare(a, b){
+        var dateA = new Date(a.created_at);
+        var dateB = new Date(b.created_at);
+        return dateA - dateB;
+      })
+    }else if(arg == "desc"){
+
+      dataCompleteArr.sort(function compare(a, b){
+              var dateA = new Date(a.created_at);
+              var dateB = new Date(b.created_at);
+              return dateB - dateA;
+          })
+    }
+    return  dataCompleteArr
+      model.save(data)
+
+  }
+
+  tagCommand (id, tag1, tag2){
+    let arr =  [tag1, tag2]
+    let data = this.data
+
+    for(let i =0; i < data.length; i++){
+      if(data[i].id == id){
+        for(let j =0; j < arr.length; j++){
+            data[i].tags.push(arr[j])
+            model.save(data)
+            return data[i].task
+        }
+      }
+
+    }
+
+  }
+
+  filter (tag1){
+    let arr = []
+    let data = this.data
+
+      for(let i =0; i < data.length; i++){
+        for(let j =0;j < data[i].tags.length; j++){
+        if(data[i].tags[j] == tag1)
+          arr.push(data[i].id,data[i].task, [data[i].tags[j]])
+        }
+      }
+
+      model.save(this.data)
+      return arr
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
