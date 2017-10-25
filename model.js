@@ -118,13 +118,22 @@ class Model {
     static modelTag(input) {
         input = input.split(" ")
         let dataTags = []
+        let addDataTag = input.slice(1)
+
+
 
         for (let j = 1; j < input.length; j++) {
             dataTags.push(input[j])
         }
 
         for (let i = 0; i < data.length; i++) {
-            if (input[0] == data[i].id) {
+            if (input[0] == data[i].id && data[i].tags) {
+                for (let j = 0; j < addDataTag.length; j++) {
+                    data[i].tags.push(addDataTag[j])
+                }
+                fs.writeFileSync('data.json', JSON.stringify(data))
+                return data[i]
+            } else if (input[0] == data[i].id) {
                 data[i].tags = dataTags
                 fs.writeFileSync('data.json', JSON.stringify(data))
                 return data[i]
