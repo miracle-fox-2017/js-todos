@@ -1,0 +1,3 @@
+{
+	"help" : [" ", "help", "list", "add <task_content>", "task <task_id>", "delete <task_id>", "complete <task_id>", "uncomplete <task_id>", "list:created asc|desc", "list:completed asc|desc", "tag <id><tag name...n>", "filter:<tag_name>"]
+}
