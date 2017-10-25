@@ -2,26 +2,28 @@
 
 class View{
 	static Menu(option, data){
-		// console.log(option, data)
-		// console.log(typeof option[0])
 		switch(option){
 			case undefined :
 				console.log('node todo.js help')
 				break;
 
 			case 'help'	:
-				console.log('node todo.js help')
-				console.log('node todo.js list')
-				console.log('node todo.js add <task_id>')
-				console.log('node todo.js task <task_id>')
-				console.log('node todo.js delete <task_id>')
-				console.log('node todo.js complete <task_id>')
-				console.log('node todo.js uncomplete <task_id>')
+				console.log('node todo.js help\n'+
+							'node todo.js list\n'+
+							'node todo.js add <task_id>\n'+
+							'node todo.js task <task_id>\n'+
+							'node todo.js delete <task_id>\n'+
+							'node todo.js complete <task_id>\n'+
+							'node todo.js uncomplete <task_id>\n'+
+							'node todo.js list:created asc|desc\n'+
+							'node todo.js list:completed asc|desc\n'+
+							'node todo.js tag <task_id> <tag_name_1> <tag_name_2>...<tag_name_N>')
+
 				break;
 
 			case 'list' :
 				data.forEach(task=>{
-					console.log(`${task.id}. ${task.task}`)
+					console.log(`${task.id}. [${task.status == false ? ' ' : 'x'}] ${task.task}`)
 				})
 				break;
 

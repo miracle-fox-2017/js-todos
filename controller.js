@@ -5,9 +5,9 @@ const Model = require('./model')
 
 class Controller{
 	constructor(menu, file){
-		let split = menu[0].split(':')
-		this.submenu = split[1]
-		this.menu = split[0]
+		let split = menu[0] == undefined ? undefined : menu[0].split(':')
+		this.submenu = split == undefined ? undefined : split[1]
+		this.menu = split == undefined ? undefined : split[0]
 		this.task = menu[1]
 		this.tag  = menu.slice(2)
 		this.file = file 
@@ -15,16 +15,14 @@ class Controller{
 	}
 
 	view_menu(){
-		if(this.menu == undefined){
-			View.Menu(this.menu)
-		}
-		else if(this.menu == 'help'){
+		
+		if(this.menu == 'help'){
 			View.Menu(this.menu)
 		}
 		else if(this.menu == 'list'){
 			switch(this.submenu){
 				case undefined :
-					View.Menu(this.submenu, this.json)
+					View.Menu(this.menu, this.json)
 					break;
 				case 'completed' :
 					View.Menu(this.submenu, this.json)
@@ -62,6 +60,9 @@ class Controller{
 		}
 		else if(this.menu == 'filter'){
 			View.Menu(this.menu, this.task_filter(this.submenu))
+		}
+		else{
+			View.Menu(this.menu)
 		}
 	}
 
@@ -142,7 +143,6 @@ class Controller{
 
 		return arr
 	}
-
 
 	
 }
