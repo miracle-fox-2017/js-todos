@@ -25,10 +25,13 @@ class Controller{
 					View.Menu(this.menu, this.json)
 					break;
 				case 'completed' :
-					View.Menu(this.submenu, this.json)
+					View.Menu(this.submenu, this.task_sorting(this.task))
 					break;
 				case 'uncompleted' :
 					View.Menu(this.submenu, this.json)
+					break;
+				case 'created' :
+					View.Menu(this.menu, this.task_sorting(this.task))
 					break;
 
 				default: break;
@@ -67,18 +70,13 @@ class Controller{
 	}
 
 	olah_json(){
-		let objDate = new Date(),
-			date = objDate.getDate(),
-			month = objDate.getMonth()+1,
-			year = objDate.getFullYear()
-
 
 		let obj = {
 			id : this.json.length+1,
 			task : this.task,
 			status : false,
 			tag : [],
-			created : `${date}-${month}-${year}`
+			created : new Date()
 		}
 
 		let data_json = []
@@ -142,6 +140,28 @@ class Controller{
 		})
 
 		return arr
+	}
+
+	task_sorting(param){
+
+		if(param == 'asc'){
+		this.json.sort(function compare(a, b){
+			var dateA = new Date(a.created);
+  			var dateB = new Date(b.created);
+  			return dateA - dateB;
+		})
+
+		return this.json
+		}
+		else{
+			this.json.sort(function compare(a, b){
+			var dateA = new Date(a.created);
+  			var dateB = new Date(b.created);
+  			return dateB - dateA;
+		})
+
+			return this.json
+		}
 	}
 
 	
