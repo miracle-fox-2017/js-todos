@@ -11,7 +11,8 @@ class Controller {
         View.viewHelp()
         break;
       case 'list':
-
+        let list = Model.modelList()
+        View.viewList(list)
         break;
       case 'add':
 

@@ -11,5 +11,8 @@ class View {
     console.log('node todo.js complete <task_id>');
     console.log('node todo.js uncomplete <task_id>');
   }
+  static viewList(list){
+    console.log(list);
+  }
 }
 module.exports = View;
