@@ -27,6 +27,13 @@ class TodoView {
 			console.log(`${tasks[i].id}. ${checked} ${tasks[i].task}`);
 		}
 	}
+
+	static showAllTasksWithDate(tasks) {
+		for (var i = 0; i < tasks.length; i++) {
+			let checked = tasks[i].isComplete === true ? '[x]' : '[ ]';
+			console.log(`${tasks[i].id}. ${checked} ${tasks[i].task} - Created at => ${new Date(tasks[i].created_at).toString()} => Completed at ${new Date(tasks[i].completed_at).toString()}`);
+		}
+	}
 }
 
 module.exports = TodoView;
