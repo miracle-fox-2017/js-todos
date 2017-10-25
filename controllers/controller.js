@@ -18,7 +18,6 @@ class Controller{
       case 'uncomplete' : Model.uncomplete_to_do_list(input_command_list); break;
     }
   }
-
 }
 
 module.exports = Controller
