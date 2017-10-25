@@ -1,1 +1,1 @@
-[{"id":1,"task":"Bermain","status":false},{"id":2,"task":"Belajar","status":false},{"id":3,"task":"Berantem","status":false},{"id":4,"task":"Berkelahi","status":false}]
+[{"id":1,"task":"Tugas Bahasa Inggris","status":false,"completed":false,"created":1508933469396},{"id":2,"task":"Tugas Bahasa Indonesia","status":true,"completed":true,"created":1508933477512},{"id":3,"task":"Tugas Bahasa Jepang","status":true,"completed":true,"created":1508933481913}]

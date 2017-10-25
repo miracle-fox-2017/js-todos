@@ -1,11 +1,11 @@
 class Tampilkan{
-    static cmdNotFound(){
+    static cmdNotFound(){ // Command tidak ditemukan
         console.log("Maaf command tidak ditemukan! Silakan ketik command 'help' untuk bantuan.");
     }
-    static contentEmpty(){
+    static contentEmpty(){ // Parameter Kosong
         console.log("Silakan masukan parameter yang di inginkan sesuai command!");
     }
-    static notFound(){
+    static notFound(){ // Data tidak ditemukan
         console.log("Maaf data tidak ditemukan! Pastikan parameter yang anda masukan benar!");
     }
     // Start from here
@@ -28,7 +28,8 @@ class Tampilkan{
     }
     static list(data){ // Tampilkan List Data
         for(let i=0;i < data.length;i++){
-            console.log(`ID : ${data[i].id} | Task : ${data[i].task} | Status : ${data[i].status}`);
+            const reformatDate=new Date(data[i].created).toLocaleString();
+            console.log(`ID : ${data[i].id} | Task : ${data[i].task} | Created : ${reformatDate} | Completed : ${data[i].completed}`);
         }
     }
     static task(hasil){ // Tampilkan task berdasarkan ID input

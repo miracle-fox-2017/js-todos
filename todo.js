@@ -1,7 +1,7 @@
 const View=require("./view");
 const Model=require("./process");
 const readCmd=process.argv.slice(2);
-const command=readCmd.length == 0 ? "help" : readCmd;
+const command=readCmd.length == 0 ? ["help"] : readCmd;
 
 // Call Model
 const model=new Model();
@@ -9,20 +9,21 @@ const json=model.readJsonFile("data.json");
 
 class Controller{
     constructor(command){
-        this.command=command[0]; // Command dalam bentuk string
+        this.command=command[0].split(":"); // Command dalam bentuk string
+        this.specialCmd=this.command.length > 1 ? this.command[1] : false;
         this.content=command.slice(1); // Content dalam bentuk array
-        this.commandList=["help","list","add","task","delete","complete","uncomplete"];
+        this.commandList=["help","list","tag","filter","add","task","delete","complete","uncomplete"];
     }
     decision(){
-        if(!this.commandList.includes(this.command)){ // Jika command tidak ditemukan dalam command list
+        if(!this.commandList.includes(this.command[0])){ // Jika command tidak ditemukan dalam command list
             View.cmdNotFound(); // Maka akan memanggil method cmdNotFound yang akan memunculkan peringatan
         }else{
             const paramRequire=this.commandList.slice(2); // Others exclude help & list
             const general=this.commandList.slice(0,2); // Ex. help, list
-            if(paramRequire.includes(this.command) && this.content.length == 0){ // Jika command membutuhkan parameter & parameter kosong maka akan memunculkan peringatan
+            if(paramRequire.includes(this.command[0]) && this.content.length == 0){ // Jika command membutuhkan parameter & parameter kosong maka akan memunculkan peringatan
                 View.contentEmpty();
-            }else if(paramRequire.includes(this.command) && this.content.length > 0){ // Jika command membutuhkan parameter & parameter tidak kosong
-                switch(this.command){
+            }else if(paramRequire.includes(this.command[0]) && this.content.length > 0){ // Jika command membutuhkan parameter & parameter tidak kosong
+                switch(this.command[0]){
                     case "add":
                         model.addData(this.content);
                         break;
@@ -47,14 +48,16 @@ class Controller{
                         View.completeState(belum);
                         break;
                 }
-            }else if(general.includes(this.command)){ // Jika command tidak membutuhkan parameter
-                switch(this.command){
-                    case "help":
-                        View.help();
-                        break;
-                    case "list":
+            }else if(general.includes(this.command[0])){ // Jika command tidak membutuhkan parameter
+                if(this.command[0] == "help"){ // Jika command yang diinput adalah help
+                    View.help();
+                }else if(this.command[0] == "list"){ // Jika command yang diinput adalah list
+                    if(this.specialCmd === false){
                         View.list(json);
-                        break;
+                    }else{
+                        const sorted=model.list(this.specialCmd,this.content.toString());
+                        View.list(sorted);
+                    }
                 }
             }
         }
