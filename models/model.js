@@ -17,7 +17,7 @@ class Model{
      if(err){
       console.log(`error`)
      }else{
-      console.log(`=>> ${comment} "${param}" to your TO DO List...`)
+      console.log(`\n=>> ${comment} "${param}" to your TO DO List...\n`)
      }
     })
   }
@@ -40,21 +40,12 @@ class Model{
       last_index.push(this.to_do_data[0][this.to_do_data[0].length-1].id)
     }
 
-    if(this.to_do_data[0].length === last_index[0]){
-      this.to_do_data[0].push({
-        id     : (parse_data.length + 1),
-        status : false,
-        task   : list_add,
-        date   : new Date(),
-      })
-    }else{
-      this.to_do_data[0].push({
-        id     : last_index[0] + 1,
-        status : false,
-        task   : list_add,
-        date   : new Date(),
-      })
-    }
+    this.to_do_data[0].push({
+      id     : (this.to_do_data[0].length === last_index[0]) ? (parse_data.length + 1) : last_index[0] + 1,
+      status : false,
+      task   : list_add,
+      date   : new Date(),
+    })
     this.saveFile(list_add, 'Added')
   }
 
@@ -70,12 +61,13 @@ class Model{
 
   delete_to_do_list(list_delete){
     let container   = []
-    let for_delete  = this.to_do_data[0].splice(container,1)
     for(let i=0; i<this.to_do_data[0].length; i++){
       if(this.to_do_data[0][i]['id'] == list_delete){
         container.push(i)
       }
     }
+
+    let for_delete  = this.to_do_data[0].splice(container,1)
     if(for_delete.length == 0){
       console.log('wrong id to delete your list')
     }else{
