@@ -105,7 +105,8 @@ class Model {
           list.status = "[x]"
           list.completed_date = new Date()
         } else {
-          return `TODO was complete`
+          console.log("-----MASUK ELSE NGGA YA?");
+          cb(`TODO was complete`)
         }
       }
     })
@@ -211,6 +212,7 @@ class Model {
   }
 
   static modelFilter(str){
+    console.log(str);
     let result=[]
     dataTodo.forEach(listTodo =>{
       listTodo.tag.forEach(listTag=>{

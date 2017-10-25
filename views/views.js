@@ -10,6 +10,9 @@ class View {
     console.log('node todo.js delete <task_id>');
     console.log('node todo.js complete <task_id>');
     console.log('node todo.js uncomplete <task_id>');
+    console.log('node todo.js list:created asc | desc');
+    console.log('node todo.js list:completed asc | desc ');
+    console.log('node todo.js filter:<tag_name>');
   }
   static viewList(list){
     console.log(list);
