@@ -11,11 +11,15 @@ class Model{
     }
 
     addData(input){
-        
+        let date = new Date()
+        let dString = date.getTime()
+
+
         var newObj = {
             'id' : 0,
             'complete' : '[ ] ',
-            'task': input
+            'task': input,
+            'created': dString
         }
 
         this.data.push(newObj)
@@ -80,6 +84,8 @@ class Model{
     }
 
 
+
+
 }
 let dataBase = new Model
 
@@ -89,9 +95,10 @@ let dataBase = new Model
 
 
 
-
+let date = new Date()
+let dString = date.toString()
+console.log(dString)
 // dataBase.lemparData()
-
 
 
 

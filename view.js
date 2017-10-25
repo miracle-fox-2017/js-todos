@@ -17,7 +17,7 @@ class View {
     static tampilkanList(data){
         
         for(var i = 0; i < data.length; i++){
-         console.log(data[i].id + ". " + data[i].complete + data[i].task)   
+         console.log(data[i].id + ". " + data[i].complete + data[i].task + " " + data[i].created)   
     
         }
     }
@@ -33,7 +33,7 @@ class View {
     }
     static completeCheck(data){
         for(var i = 0; i < data.length; i++){
-            console.log(data[i].id + ". " + data[i].complete + data[i].task)   
+            console.log(data[i].id + ". " + data[i].complete + data[i].task + data[i].created)    
        
            }
     }
