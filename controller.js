@@ -8,7 +8,7 @@ class Controller {
       View.help()
     } else if(command[0] == 'list'){
       let listData = Model.readFile()
-      View.list(listData)
+      View.listTask(listData)
     } else if(command[0] == 'add') {
       let addData = Model.addTask(args)
       View.addTask(addData)
@@ -16,9 +16,14 @@ class Controller {
       let taskData = Model.findTask(args)
       View.findTask(taskData)
     } else if(command[0] == 'delete') {
-      let updateData = Model.deleteTask(args)
-      // console.log(updateData);
-      View.deleteTask(updateData)
+      let deleteData = Model.deleteTask(args)
+      View.deleteTask(deleteData)
+    } else if(command[0] == 'complete') {
+      let completeData = Model.completeTask(args)
+      View.listTask(completeData)
+    } else if(command[0] == 'uncomplete') {
+      let uncompleteData = Model.uncompleteTask(args)
+      View.listTask(uncompleteData)
     }
     // View.notFound()
   }

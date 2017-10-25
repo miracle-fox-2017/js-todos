@@ -1,1 +1,1 @@
-[{"id":1,"task":"Bikin aplikasi"},{"id":2,"task":"Main Node.js"},{"id":3,"task":"Sholat dhuhur"},{"id":4,"task":"Makan siang"},{"id":5,"task":"Lecture"}]
+[{"id":1,"task":"Bikin aplikasi","complete":true},{"id":2,"task":"Main Node.js","complete":true},{"id":3,"task":"Lecture","complete":false},{"id":4,"task":"Anchor","complete":false},{"id":5,"task":"Rocket","complete":false}]

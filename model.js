@@ -9,14 +9,15 @@ class Model {
   static addTask(args) {
     let listName = args.join(' ')
     let data = this.readFile()
-    let add = {
+    let addTask = {
       id: (+data[data.length-1].id) + 1,
-      task: listName
+      task: listName,
+      complete: false
     }
 
-    data.push(add)
+    data.push(addTask)
     fs.writeFileSync('data.json', JSON.stringify(data))
-    return add
+    return addTask
   }
 
   static findTask(args) {
@@ -36,6 +37,28 @@ class Model {
         data.splice(i, 1)
         fs.writeFileSync('data.json', JSON.stringify(data))
         return deleteTask
+      }
+    }
+  }
+
+  static completeTask(args) {
+    let data = this.readFile()
+    for(let i = 0; i < data.length; i++) {
+      if(data[i].id == args) {
+        data[i].complete = true
+        fs.writeFileSync('data.json', JSON.stringify(data))
+        return data
+      }
+    }
+  }
+
+  static uncompleteTask(args) {
+    let data = this.readFile()
+    for (let i = 0; i < data.length; i++) {
+      if(data[i].id == args) {
+        data[i].complete = false
+        fs.writeFileSync('data.json', JSON.stringify(data))
+        return data
       }
     }
   }
