@@ -1,15 +1,37 @@
 const fs = require('fs');
+var Table = require('cli-table2');
+var tbList = new Table({
+           head: ['No', 'Status', 'Task', 'Tag']
+        , style: {
+            head: []    //disable colors in header cells
+          , border: []  //disable colors for the border
+        }
+        , colWidths: [5, 10, 25, 40]  //set the widths of each column (optional)
+      });
+var tbSort = new Table({
+           head: ['No', 'Status', 'Task']
+        , style: {
+          head: []    //disable colors in header cells
+        , border: []  //disable colors for the border
+                }
+        , colWidths: [5, 10, 25]  //set the widths of each column (optional)
+            });
 let dataTodo = JSON.parse(fs.readFileSync('data0.json','utf8'))
 class Model {
-  constructor() {
-
-  }
   static modelList(){
-    let result = ''
+    // let result = ''
+
     dataTodo.forEach(list =>{
-      result+= `${list.id}. ${list.status} ${list.task}\n`
+      let tag = ''
+      list.tag.forEach( tags =>{
+        tag+=tags+', '
+      })
+      tbList.push(
+          [list.id, list.status, list.task, tag]
+      );
+      // result+= `${list.id}. ${list.status} ${list.task}\n`
     })
-    return result
+    return tbList.toString()
   }
 
   static modelAdd(add, cb){
@@ -42,12 +64,18 @@ class Model {
     let result = ''
     dataTodo.forEach(listTask =>{
       if(listTask.id === +task){
-        result = `${listTask.id}. ${listTask.status} ${listTask.task}`
+        let tag = ''
+        listTask.tag.forEach( tags =>{
+          tag+=tags+', '
+        })
+        tbList.push(
+            [listTask.id, listTask.status, listTask.task, tag]
+        );
       } else {
         // result = `Cannot find your TODO`
       }
     })
-    return result
+    return tbList.toString()
   }
   static modelDelete(no, cb){
     let lists = []
@@ -128,9 +156,11 @@ class Model {
     })
     let result = ''
     dataTodo.forEach(listTask =>{
-      result += `${listTask.id}. ${listTask.status} ${listTask.task}\n`
+      tbSort.push(
+          [listTask.id, listTask.status, listTask.task]
+      );
     })
-    return result
+    return tbSort.toString()
   }
   static modelCompleted(str){
     let data = []
@@ -154,9 +184,11 @@ class Model {
     })
     let result = ''
     data.forEach(listTask =>{
-      result += `${listTask.id}. ${listTask.status} ${listTask.task}\n`
+      tbSort.push(
+          [listTask.id, listTask.status, listTask.task]
+      );
     })
-    return result
+    return tbSort.toString()
   }
   static modelTag(no, tags, cb){
     dataTodo.forEach(insertTag => {
@@ -176,6 +208,27 @@ class Model {
       }
       cb(msg)
     });
+  }
+
+  static modelFilter(str){
+    let result=[]
+    dataTodo.forEach(listTodo =>{
+      listTodo.tag.forEach(listTag=>{
+        if(listTag === str){
+          result.push(listTodo)
+        }
+      })
+    })
+    result.forEach(getFilter =>{
+      let tag = ''
+      getFilter.tag.forEach( tags =>{
+        tag+=tags+', '
+      })
+      tbList.push(
+          [getFilter.id, getFilter.status, getFilter.task, tag]
+      );
+    })
+    return tbList.toString()
   }
 }
 module.exports = Model;

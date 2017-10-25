@@ -52,13 +52,17 @@ class Controller {
           View.viewTag(msg)
         })
         break;
-      case 'filter':
-        Model.modelUncomplete(menu[1], (msg)=>{
-          View.viewUncomplete(msg)
-        })
+      case ' ':
+        View.viewHelp()
         break;
-
-      default: View.viewHelp()
+      default:
+      let data = menu[0].split(':')
+      if(data[0] === 'filter'){
+        let list = Model.modelFilter(data[1])
+          View.viewFilter(list)
+      } else {
+        View.viewHelp()
+      }
 
     }
   }

@@ -38,5 +38,8 @@ class View {
   static viewTag(tag){
     console.log(tag);
   }
+  static viewFilter(filter){
+    console.log(filter);
+  }
 }
 module.exports = View;
