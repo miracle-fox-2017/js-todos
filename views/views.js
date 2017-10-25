@@ -14,5 +14,29 @@ class View {
   static viewList(list){
     console.log(list);
   }
+  static viewAdd(add){
+    console.log(add);
+  }
+  static viewTask(task){
+    console.log(task);
+  }
+  static viewDelete(delet){
+    console.log(delet);
+  }
+  static viewComplete(complete){
+    console.log(complete);
+  }
+  static viewUncomplete(uncomplete){
+    console.log(uncomplete);
+  }
+  static viewCreated(created){
+    console.log(created);
+  }
+  static viewCompleted(completed){
+    console.log(completed);
+  }
+  static viewTag(tag){
+    console.log(tag);
+  }
 }
 module.exports = View;

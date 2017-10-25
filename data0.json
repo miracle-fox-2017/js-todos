@@ -1,4 +1,1 @@
-[
-  {"task": "Bikin Aplikasi"},
-  {"task": "Main Node.js"}
-]
+[{"id":1,"status":"[x]","task":"Bikin Aplikasi","created_date":"2017-10-25T06:23:03.428Z","completed_date":"2017-10-25T07:00:25.612Z","tag":[]},{"id":2,"status":"[x]","task":"Bikin Web","created_date":"2017-10-25T06:24:11.346Z","completed_date":"2017-10-25T06:56:58.852Z","tag":[]},{"id":3,"status":"[ ]","task":"Bikin Makanan","created_date":"2017-10-25T07:03:39.027Z","completed_date":"","tag":["Telor","Tepung","Minyak","Kompor","Wajan"]}]
