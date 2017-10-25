@@ -38,6 +38,17 @@ class View {
    console.log(`Deleted ${data.task} from your TODO list...`);
  }
 
+ static tagTask(data) {
+   console.log(`Tagged task ${data.task} with tags: ${data.tag.join(', ')}`);
+ }
+
+ static filterTag(data) {
+  //  console.log(data);
+   for (let i = 0; i < data.length; i++) {
+    console.log(`${data[i].task} [${data[i].tag.join(', ')}]`);
+   }
+ }
+
   static notFound() {
     console.log('todo.js : command not found');
   }
